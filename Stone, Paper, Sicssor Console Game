@@ -1,0 +1,183 @@
+#include<iostream>
+#include<cstring>
+#include<cstdlib>
+#include<conio.h>
+#include<windows.h>
+using namespace std;
+void display();
+int userinput();
+int winner(string,string);
+int main()
+{
+	int score=0;
+	string name;
+	char input;
+	cout<<endl;
+	cout<<"\t\t\t\t =============================="<<endl;
+	cout<<"\t\t\t\t| Please enter your  Name first|"<<endl;
+	cout<<"\t\t\t\t =============================="<<endl;
+	cout<<endl;
+	cout<<endl;
+	cout<<"\tEnter your name:			";
+	getline(cin,name);
+cout<<endl;
+do{
+	system("cls");
+	display();
+	score=score+userinput();
+	cout<<"\tWould you like to play again (y/n):		";
+	cin>>input;
+	cout<<endl;
+}while(input!='n');
+cout<<endl;
+for(int i=0;i<=name.size();i++){
+	cout<<name[i];
+	Sleep(200);
+}
+cout<<"   is our today player:			"<<endl;
+cout<<endl;
+cout<<"******************************************************************************************************************"<<endl;
+cout<<endl;
+cout<<"\t\t\tNumber of Winning turns:		"<<score<<endl;
+cout<<endl;
+cout<<"******************************************************************************************************************"<<endl;
+}
+void display(){
+	cout<<"\t************************************************************************************************************"<<endl;
+	cout<<"                                Welcome to Stone,Paper,Sicssor Game                                           "<<endl;
+	cout<<"\t************************************************************************************************************"<<endl;
+	cout<<endl;
+	cout<<"\t ======================"<<endl;
+	cout<<"\t|      Game Rules:     |"<<endl;
+	cout<<"\t ======================"<<endl;
+	cout<<endl;
+	cout<<"\t _________________________ "<<endl;
+	cout<<"\t| a.Rock break the Sicssor|"<<endl;
+	cout<<"\t| b.Sicssor cut the Paper |"<<endl;
+	cout<<"\t| c.Paper cover the Stone |"<<endl;
+	cout<<"\t|_________________________|"<<endl;
+	cout<<endl;
+	cout<<"\t*************************************************************************************************************"<<endl;
+	cout<<"\t*************************************************************************************************************"<<endl;
+	cout<<endl;    
+}
+int userinput(){
+	int input;
+	string yinput,cinput;
+	cout<<"\t\t\t\t ============================"<<endl;
+	cout<<"\t\t\t\t|      Start Your Game       |"<<endl;
+	cout<<"\t\t\t\t ============================"<<endl;
+	cout<<endl;
+	cout<<endl;
+	cout<<" ============================"<<endl;
+	cout<<"|Choose one of the Following:|"<<endl;
+	cout<<" ============================"<<endl;
+	cout<<"\t________________"<<endl;
+	cout<<"\t| 1) Sicssor 	|"<<endl;
+	cout<<"\t| 2) Rock 		|"<<endl;
+	cout<<"\t| 3) Paper		|"<<endl;
+	cout<<"\t|______________|"<<endl;
+	cout<<endl;
+	label1:
+	cout<<"\tEnter your Input:		";
+	cin>>input;
+	if(input==1){
+		yinput="Sicssor";
+	}
+	else if(input==2){
+		yinput="Rock";
+	}
+	else if(input==3){
+		yinput="Paper";
+	}
+	else{
+		cout<<"Invalid input";
+		goto label1;
+	}
+	cout<<endl;
+	cout<<"\t_________________________"<<endl;
+	cout<<"\t| You Choose:			 |"<<yinput<<endl;
+	cout<<"\t|_______________________|"<<endl;
+	cout<<endl;
+	int computerinput=rand()%3+1;
+		if(computerinput==1){
+		cinput="Sicssor";
+	}
+	else if(computerinput==2){
+		cinput="Rock";
+	}
+	else if(computerinput==3){
+		cinput="Paper";
+	}
+	else{
+		cout<<"Invalid input"<<endl;
+		goto label1;
+	}
+	cout<<endl;
+	cout<<"\t________________________"<<endl;
+	cout<<"\t| Computer Choose:		|"<<cinput<<endl;
+	cout<<"\t|______________________|"<<endl;
+	cout<<endl;
+
+int output=winner(yinput,cinput);
+   if(output==1){
+   	cout<<endl;
+   	cout<<"\t\t\tYou Won!		"<<endl;
+    cout<<endl;
+    	cout<<"**************************************************************************************************************************"<<endl;
+    	cout<<endl;
+   	return 1;
+   }
+   else if(output==0){
+   		cout<<endl;
+   	cout<<"\t\t\tSorry! Computer Won		"<<endl;
+   	cout<<endl;
+   		cout<<"***************************************************************************************************************************"<<endl;
+   		cout<<endl;
+   	return 0;
+   }
+   else if(output==-1){
+   		cout<<endl;
+   	cout<<"\t\t\tGame Draw"<<endl;
+   	cout<<endl;
+   		cout<<"***************************************************************************************************************************"<<endl;
+   		cout<<endl;
+   	return 0;
+   }
+}
+int winner(string yinput,string cinput){
+   if(cinput=="Rock"){
+   	if(yinput=="Rock"){
+   		return -1;
+	   }
+	   if(yinput=="Sicssor"){
+	   	return 0;
+	   }
+	   if(yinput=="Paper"){
+	   	return 1;
+	   }
+   }
+   if(cinput=="Sicssor"){
+   	if(yinput=="Sicssor"){
+   		return -1;
+	   }
+	   if(yinput=="Rock"){
+	   	return 1;
+	   }
+	   if(yinput=="Paper"){
+	   	return 0;
+	   }
+   }
+    if(cinput=="Paper"){
+   	if(yinput=="Paper"){
+   		return -1;
+	   }
+	   if(yinput=="Sicssor"){
+	   	return 1;
+	   }
+	   if(yinput=="Rock"){
+	   	return 0;
+	   }
+   }
+   return 0;
+}
