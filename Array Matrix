@@ -1,0 +1,130 @@
+#include<stdio.h>
+int columns,rows,a;
+float matrix(float arr2[][columns],float a){
+	
+		if(arr2[rows][columns]==a){
+	printf("It is Symmetric Matrix\n");
+}
+    if(arr2[rows][columns]!=a){
+	printf("It is Not a Symmetric Matrix\n");
+}
+}
+int main(){
+	int a,n,rows,columns,size;
+	float sum=0;
+	printf("Enter the number of Rows:");
+	scanf("%d",&rows);
+	printf("Enter the number of Columns:");
+	scanf("%d",&columns);
+	printf("\n");
+	printf("These are two Matrix:\n");
+	printf("\n");
+	printf("Matrix 1:\n");
+	printf("\n");
+    srand(time(0));
+		int arr[rows][columns];
+		 int arr1[rows][columns];
+		 	float arr2[rows][columns];
+		 	
+	for(int i=0;i<rows;i++)
+	{
+		for(int j=0;j<columns;j++)
+		{
+			a=1+rand()%9;
+			arr[i][j]=a;
+			printf("%d  ",arr[i][j]);
+			if(i==j){
+				int chg1=arr1[i][j];
+				arr1[i][j]= arr[i][j];
+				arr1[i][j]=chg1;
+			}
+		}
+		printf("\n");
+	}
+	printf("\n");
+	printf("Matrix 2:\n");
+		printf("\n");
+	for(int i=0;i<rows;i++)
+	{
+		for(int j=0;j<columns;j++)
+		{
+			a=1+rand()%9;
+			arr1[i][j]=a;
+			printf("%d  ",arr1[i][j]);
+			
+		if(i==j){
+			int chg2=arr[i][j];
+			arr[i][j]=arr1[i][j];
+			arr1[i][j]=chg2;
+		}
+		}
+		printf("\n");
+	}
+	printf("\n");
+  printf("After intersecting the diagonal of those matrix:\n");
+    printf("\n");
+	printf("Matrix 1*\n");
+	printf("\n");	
+	for(int i=0;i<rows;i++){
+		for(int j=0;j<columns;j++){
+		printf("%d  ",arr[i][j]);
+}
+	printf("\n");
+}
+printf("\n");
+printf("Matrix 2*\n");
+printf("\n");
+   for(int i=0;i<rows;i++){
+   	for(int j=0;j<columns;j++){
+   		printf("%d  ",arr1[i][j]);
+	   }
+	   printf("\n");
+   }
+   printf("\n");
+  // Calculate sum of neighbours of each element
+  printf("After evaluating the Neighbours of each element\n");
+  printf("\n");
+  printf("Matrix 3**\n");
+  printf("\n");
+for (int i = 0; i < rows; i++)
+{
+    for (int j = 0; j < columns; j++)
+    {
+        // Initialize sum of neighbours
+        int sum = 0;
+               // Check bottom element
+           if (i < rows - 1)
+            sum=sum+arr1[i + 1][j];
+            
+        // Check top element
+          if (i > 0)
+            sum =sum+arr1[i - 1][j];
+            
+         // Check right element
+          if (j < columns - 1)
+            sum=sum+arr1[i][j + 1];
+            
+        // Check left element
+          if (j > 0)
+            sum=sum+arr1[i][j - 1];
+			      
+      float a =sum/(float)arr1[i][j];
+        printf("%.2f\t",a);
+        arr2[j][i]=(float)a;
+    }
+    printf("\n");
+}
+printf("\n");
+printf("Transpose of a Matrix 3** \n");
+printf("\n");
+for(int i=0;i<rows;i++){
+	for(int j=0;j<columns;j++){
+		
+		printf("%.2f\t",arr2[i][j]);
+	}
+	printf("\n");
+}
+
+printf("\n");
+float f=matrix(arr2,a);
+}
